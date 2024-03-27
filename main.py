@@ -6,32 +6,6 @@ What this Tic-Tac-Toe game entails:
 
 import pygame
 
-pygame.init()
-pygame.font.init()
-
-pygame.display.set_caption("Tic-Tac-Toe")
-
-pygame.mouse.set_visible(True)
-
-FPS = 60
-clock = pygame.time.Clock()
-
-WIDTH,HEIGHT = 500,600
-BORDER_THICKNESS = 10
-
-WIN = pygame.display.set_mode((WIDTH,HEIGHT))
-
-#delcare the fonts of the characters
-GAME_FONT = pygame.font.SysFont("comicsans",100)
-#font of word box
-WORD_FONT = pygame.font.SysFont("comicsans",30)
-
-#colors
-WHITE = (255,255,255)
-BLACK = (0,0,0)
-GREEN = (0,255,0)
-RED = (255,0,0)
-
 def display_window(squares,marks,turn,game_going,tie_game):
     WIN.fill(WHITE)
     starting_pos = WIDTH // 3
@@ -122,9 +96,35 @@ def check_win(marks,game_going):
     else:
         return True,False
     
-    
-
 def main():
+    global WIDTH,HEIGHT,BORDER_THICKNESS,WIN,GAME_FONT,WORD_FONT,WHITE,BLACK,GREEN,RED,turn,x,y,squares,marks
+    
+    pygame.init()
+    pygame.font.init()
+
+    pygame.display.set_caption("Tic-Tac-Toe")
+
+    pygame.mouse.set_visible(True)
+
+    FPS = 60
+    clock = pygame.time.Clock()
+
+    WIDTH,HEIGHT = 500,600
+    BORDER_THICKNESS = 10
+
+    WIN = pygame.display.set_mode((WIDTH,HEIGHT))
+
+    #delcare the fonts of the characters
+    GAME_FONT = pygame.font.SysFont("comicsans",100)
+    #font of word box
+    WORD_FONT = pygame.font.SysFont("comicsans",30)
+
+    #colors
+    WHITE = (255,255,255)
+    BLACK = (0,0,0)
+    GREEN = (0,255,0)
+    RED = (255,0,0)
+
     turn = 1
     x, y = 0,0
     squares = []
@@ -134,11 +134,11 @@ def main():
             x += WIDTH//3 - BORDER_THICKNESS//2 + BORDER_THICKNESS
         x = 0
         y += WIDTH//3 - BORDER_THICKNESS//2 + BORDER_THICKNESS
-    
+
     marks = ['','','','','','','','','']
             
         
-    
+
     game_going = True
     while game_going:
         clock.tick(FPS)
@@ -165,7 +165,7 @@ def main():
         mouse_presses = pygame.mouse.get_pressed()
         game_going,tie_game = check_win(marks,game_going)
         display_window(squares,marks,turn,game_going,tie_game)
-    
+
     pygame.time.delay(3000)
 
 
